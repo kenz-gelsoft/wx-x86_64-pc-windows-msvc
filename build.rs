@@ -3,6 +3,7 @@ use std::env;
 const FLAGS: &[&str] = &[
     "-I@ROOT@/lib/vc14x_x64_dll/mswu",
     "-I@ROOT@/include",
+    "-I@ROOT@/include/msvc",
     "-D__WXMSW__",
     "-DwxDEBUG_LEVEL=0",
     "-L@ROOT@/lib/vc14x_x64_dll",
