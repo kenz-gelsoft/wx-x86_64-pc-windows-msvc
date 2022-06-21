@@ -1,6 +1,9 @@
 [package]
-name = "wx-x86_64-pc-windows-gnu"
-version = "3.1.6"
-authors = ["Dmitry Pankratov <dmitry@pankratov.net>"]
+name = "wx-x86_64-pc-windows-msvc"
+version = "3.1.7"
+authors = [
+    "Dmitry Pankratov <dmitry@pankratov.net>",
+    "KENZ <KENZ.gelsoft@gmail.com>"
+]
 edition = "2021"
-links = "wx-x86_64-pc-windows-gnu"
+links = "wx-x86_64-pc-windows-msvc"
