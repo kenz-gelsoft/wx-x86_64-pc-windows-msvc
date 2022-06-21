@@ -1,11 +1,11 @@
 use std::env;
 
 const FLAGS: &[&str] = &[
-    "-I@ROOT@/lib/mswu",
+    "-I@ROOT@/lib/vc14x_x64_dll/mswu",
     "-I@ROOT@/include",
     "-D__WXMSW__",
     "-DwxDEBUG_LEVEL=0",
-    "-L@ROOT@/lib",
+    "-L@ROOT@/lib/vc14x_x64_dll",
     "-lwxmsw31u",
     "-lkernel32",
     "-luser32",
