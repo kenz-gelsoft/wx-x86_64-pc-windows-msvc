@@ -34,12 +34,16 @@ const FLAGS: &[&str] = &[
     "-lwxexpat",
 ];
 
-fn main() {
+pub fn wx_config(args: &[&str]) -> Vec<String> {
     let pkg_path = env::var("CARGO_MANIFEST_DIR").unwrap();
     let flags = FLAGS
         .iter()
-        .map(|&f| f.replace("@ROOT@", &pkg_path).replace('\n', " "))
-        .collect::<Vec<_>>();
-
-    println!("cargo:cflags={}", flags.join(" "));
+        .map(|&f| f.replace("@ROOT@", &pkg_path).replace('\n', " "));
+    let (ldflags, cflags): (Vec<_>, Vec<_>) =
+        flags.partition(|f| f.starts_with("-l") || f.starts_with("-L"));
+    if args.contains(&"--cflags") {
+        cflags
+    } else {
+        ldflags
+    }
 }
