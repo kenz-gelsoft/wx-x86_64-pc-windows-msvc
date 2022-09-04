@@ -7,3 +7,6 @@ authors = [
 ]
 edition = "2021"
 links = "wx-x86_64-pc-windows-msvc"
+
+[features]
+vendored = []
