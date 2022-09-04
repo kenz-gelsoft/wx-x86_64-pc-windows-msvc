@@ -1,5 +1,7 @@
 use std::env;
 
+include!(concat!(env!("OUT_DIR"), "/pkg_path.rs"));
+
 const FLAGS: &[&str] = &[
     "-I@ROOT@/lib/vc14x_x64_dll/mswu",
     "-I@ROOT@/include",
@@ -35,10 +37,9 @@ const FLAGS: &[&str] = &[
 ];
 
 pub fn wx_config(args: &[&str]) -> Vec<String> {
-    let pkg_path = env::var("CARGO_MANIFEST_DIR").unwrap();
     let flags = FLAGS
         .iter()
-        .map(|&f| f.replace("@ROOT@", &pkg_path).replace('\n', " "));
+        .map(|&f| f.replace("@ROOT@", &PKG_PATH).replace('\n', " "));
     let (ldflags, cflags): (Vec<_>, Vec<_>) =
         flags.partition(|f| f.starts_with("-l") || f.starts_with("-L"));
     if args.contains(&"--cflags") {
