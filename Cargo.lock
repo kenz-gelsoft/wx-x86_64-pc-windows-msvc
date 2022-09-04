@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "wxrust-config"
-version = "0.0.1-alpha2"
+name = "wx-x86_64-pc-windows-msvc"
+version = "3.2.0"
