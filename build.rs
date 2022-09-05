@@ -36,23 +36,20 @@ const FLAGS: &[&str] = &[
     "-lwxexpat",
 ];
 
-fn save_pkg_path(pkg_path: &str) {
+fn save_flags(flags: &str) {
     let out_dir = env::var_os("OUT_DIR").unwrap();
-    let dest_path = Path::new(&out_dir).join("pkg_path.rs");
-    fs::write(
-        &dest_path,
-        format!("static PKG_PATH: &str = r\"{}\";", pkg_path)
-    ).unwrap();
+    let dest_path = Path::new(&out_dir).join("flags.rs");
+    fs::write(&dest_path, format!("static FLAGS: &str = r\"{}\";", flags)).unwrap();
     println!("cargo:rerun-if-changed=build.rs");
 }
 
 fn main() {
     let pkg_path = env::var("CARGO_MANIFEST_DIR").unwrap();
-    save_pkg_path(&pkg_path);
     let flags = FLAGS
         .iter()
         .map(|&f| f.replace("@ROOT@", &pkg_path).replace('\n', " "))
         .collect::<Vec<_>>();
 
+    save_flags(&flags.join(" "));
     println!("cargo:cflags={}", flags.join(" "));
 }
